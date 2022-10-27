@@ -7,10 +7,15 @@ import json
 import codigoHTML as HTML
 import os
 import hashlib
-import sys
-#sys.stdin (asociado al teclado) - salida teclado
-#sys.stdout (asociado a la ventana) -> salida estandard
-#sys.stderr (asociado a la ventana) -> salida de error
+import mysql.connector
+
+#conectar a la base de datos
+mibd = mysql.connector.connect(
+    host='localhost',
+    user='log/reg',
+    password='log/reg',
+    database='log/reg'
+)
 
 args =  cgi.parse()
 
