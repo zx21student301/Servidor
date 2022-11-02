@@ -1,4 +1,8 @@
+#clase:
 #!C:\Users\zx21student301\AppData\Local\Microsoft\WindowsApps\python
+
+#casa:
+##C:\Users\ericf\AppData\Local\Microsoft\WindowsApps\python
 
 print("Conten-Type: text/html\n")
 
