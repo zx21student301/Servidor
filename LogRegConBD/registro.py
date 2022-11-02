@@ -50,11 +50,6 @@ if (os.path.exists("usuarios/usuarios.json")):
 
 listaUsuarios.append(usuario)
 
-#para escribir en el registro de errores de apache
-for y in listaUsuarios:
-    for z in y:
-        sys.stderr.write(">"+z+"<")
-
 
 usuariosJson = json.dumps(listaUsuarios)
 
