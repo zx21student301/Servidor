@@ -4,14 +4,29 @@ import codigoHTML as HTML
 import os
 from http import cookies
 import json
+import mysql.connector
+
+#conectar a la base de datos
+mibd = mysql.connector.connect(
+    host='localhost',
+    user='Log/Reg',
+    password='Log/Reg',
+    database='Log/Reg'
+)
+
+mycursor = mibd.cursor()
+
+mycursor.execute('SELECT * FROM datosUsuarios')
+
+myresult = mycursor.fetchall()
+
+users = []
+
+for x in myresult:
+    valIni = (x[1],x[2],x[3],x[4])
+    users.append(valIni)
 
 print("Conten-Type: text/plain\n")
-
-f = open("usuarios/usuarios.json")
-
-usuariosEnJson = json.loads(f.read())
-
-f.close()
 
 estaDentro = False
 
@@ -27,7 +42,7 @@ if 'HTTP_COOKIE' in os.environ:
 usuario = ""
 
 if 'SID' in todasCookies:
-    for datos in usuariosEnJson:
+    for datos in users:
         if(datos[1] == todasCookies["SID"]):
             usuario = datos[0]
             estaDentro=True

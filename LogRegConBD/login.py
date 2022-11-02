@@ -6,6 +6,17 @@ import codigoHTML as HTML
 import datetime
 from http import cookies
 import hashlib
+import mysql.connector
+
+#conectar a la base de datos
+mibd = mysql.connector.connect(
+    host='localhost',
+    user='Log/Reg',
+    password='Log/Reg',
+    database='Log/Reg'
+)
+
+mycursor = mibd.cursor()
 
 args = cgi.parse()
 
@@ -16,13 +27,17 @@ pwdCod = hashlib.sha512(str.encode(pwd))
 
 dentro = False
 
-f = open("usuarios/usuarios.json")
+mycursor.execute('SELECT * FROM datosUsuarios')
 
-usuariosEnJson = json.loads(f.read())
+myresult = mycursor.fetchall()
 
-f.close()
+users = []
 
-for usuario in usuariosEnJson:
+for x in myresult:
+    valIni = (x[1],x[2],x[3],x[4])
+    users.append(valIni)
+
+for usuario in users:
     if(nom == usuario[0]):
         if(pwdCod.hexdigest() == usuario[1]):
             dentro = True

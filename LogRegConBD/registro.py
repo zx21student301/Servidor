@@ -12,10 +12,12 @@ import mysql.connector
 #conectar a la base de datos
 mibd = mysql.connector.connect(
     host='localhost',
-    user='log/reg',
-    password='log/reg',
-    database='log/reg'
+    user='Log/Reg',
+    password='Log/Reg',
+    database='Log/Reg'
 )
+
+mycursor = mibd.cursor()
 
 args =  cgi.parse()
 
@@ -25,38 +27,38 @@ email = args["email"][0]
 
 pwdCod = hashlib.sha512(str.encode(pwd))
 
-usuario = []
+mycursor.execute('SELECT * FROM datosUsuarios')
 
-usuario.append(nom)
-usuario.append(pwdCod.hexdigest())
-usuario.append(email)
+myresult = mycursor.fetchall()
 
-listaUsuarios = []
+users = []
 
-if (os.path.exists("usuarios/usuarios.json")):
-    f = open("usuarios/usuarios.json" ,"rt")
-    usuariosEnJson = json.loads(f.read())
-    f.close()
+for x in myresult:
+    if(x[1] != 'admin'):
+        sqlIni = "INSERT INTO datosUsuarios (nombre,contraseña,email,rol) VALUES (%s, %s, %s, %s);"
 
-    for valor in usuariosEnJson:
-        elemento = []
-        elemento.append(valor[0])
-        elemento.append(valor[1])
-        elemento.append(valor[2])
+        valIni = (x[1],x[2],x[3],x[4])
+        users.append(valIni)
 
-        listaUsuarios.append(elemento)
+sqlDel = 'DELETE FROM datosUsuarios'
+mycursor.execute(sqlDel)
 
-        
+sql = "INSERT INTO datosUsuarios (nombre,contraseña,rol) VALUES (%s, %s ,%s);"
 
-listaUsuarios.append(usuario)
+pwdAd = "admin"
+pwdAdCod = hashlib.sha512(str.encode(pwdAd))
 
+val = ('admin',pwdAdCod.hexdigest(),'1')
+mycursor.execute(sql,val)
 
-usuariosJson = json.dumps(listaUsuarios)
+for u in users:
+    mycursor.execute(sqlIni,u)
 
-f = open("usuarios/usuarios.json" ,"wt")
+sql = "INSERT INTO datosUsuarios (nombre,contraseña,email,rol) VALUES (%s, %s, %s, %s);"
 
-f.write(usuariosJson)
+val = (nom,pwdCod.hexdigest(),email,'0')
+mycursor.execute(sql,val)
 
-f.close()
+mibd.commit()
 
 HTML.redireccionPrincipal()
