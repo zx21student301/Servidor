@@ -13,6 +13,8 @@ cabeceraHTML="""
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script tsrc="js/vdc.js"></script>
+
     <title>Venta de Camiones</title>
 </head>
 
@@ -22,7 +24,7 @@ cabeceraHTML="""
             <div class="col-2"></div>
             <div class="col-8 text-center" >
                     <h3 class="display-3"></h3>"""
-                    
+
 finalHTML="""
             </div>
             <div class="col-2"></div>
