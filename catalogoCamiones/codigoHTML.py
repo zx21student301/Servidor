@@ -22,6 +22,7 @@ cabeceraHTML="""
             <div class="col-2"></div>
             <div class="col-8 text-center" >
                     <h3 class="display-3"></h3>"""
+                    
 finalHTML="""
             </div>
             <div class="col-2"></div>
