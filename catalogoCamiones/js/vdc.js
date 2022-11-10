@@ -44,7 +44,7 @@ function cargarServidorCamiones(){
 	}
 
     //construir la petición al servidor
-	jsonhttp.open("GET","listarCamiones.py",true);
+	jsonhttp.open("GET","http://www.servidor.es/catalogoCamiones/listarCamiones.py",true);
 	//ejecutar la petición al servidor
 	jsonhttp.send();
 
