@@ -77,8 +77,8 @@ function crearCamion(c){
     infoDesc.setAttribute("class","card-text");
     infoDesc.innerHTML = "Descripci&oacute;n: "+desc;
 
-    subDivCard.appendChild(infoMarca);
     subDivCard.appendChild(infoMod);
+    subDivCard.appendChild(infoMarca);
     subDivCard.appendChild(infoPrecio);
     subDivCard.appendChild(infoDesc);
 
