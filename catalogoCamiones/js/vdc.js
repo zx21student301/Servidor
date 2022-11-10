@@ -20,7 +20,7 @@ function cargarServidorCamiones(){
             let listaC = JSON.parse(this.responseText);   
 
             for (c of listaC){
-                listaCamiones.append(crearCamion(c))
+                listaCamiones.appendChild(crearCamion(c))
             }
 		}
 	}
@@ -53,27 +53,71 @@ function crearCamion(c){
     imagen.setAttribute("class","img-fluid rounded-start");
     imagen.setAttribute("alt",marca+" "+modelo);
 
+    subDivImg.appendChild(imagen);
+
     let subDivInfo = document.createElement("div");
     subDivInfo.setAttribute("class","col-md-7");
 
-    let 
+    let subDivCard = document.createElement("div");
+    subDivCard.setAttribute("class","card-body");
 
-    let camion = '\
-    <div class="card m-3">\
-        <div class="row g-0">\
-        <div class="col-md-5">\
-            <img src="img/'+c[4]+'" class="img-fluid rounded-start" alt="'+c[0]+' '+c[1]+'">\
-        </div>\
-        <div class="col-md-7">\
-            <div class="card-body">\
-            <h5 class="card-title">Modelo: '+c[1]+'</h5>\
-            <p class="card-text">Marca: '+c[0]+'</p>\
-            <p class="card-text">Precio: '+c[3]+' &euro;</p>\
-            <p class="card-text">Descripci&oacute;n: '+c[2]+'</p>\
-            </div>\
-        </div>\
-        </div>\
-    </div>';
+    let infoMod = document.createElement("h5");
+    infoMod.setAttribute("class","card-title");
+    infoMod.innerHTML = "Modelo: "+modelo;
 
-    return camion;
+    let infoMarca = document.createElement("p");
+    infoMarca.setAttribute("class","card-text");
+    infoMarca.innerHTML = "Marca: "+marca;
+
+    let infoPrecio = document.createElement("p");
+    infoPrecio.setAttribute("class","card-text");
+    infoPrecio.innerHTML = "Precio: "+precio;
+
+    let infoDesc = document.createElement("p");
+    infoDesc.setAttribute("class","card-text");
+    infoDesc.innerHTML = "Descripci&oacute;n: "+desc;
+
+    subDivCard.appendChild(infoMarca);
+    subDivCard.appendChild(infoMod);
+    subDivCard.appendChild(infoPrecio);
+    subDivCard.appendChild(infoDesc);
+
+    subDivInfo.appendChild(subDivCard);
+
+    divRow.appendChild(subDivImg);
+    divRow.appendChild(subDivInfo);
+
+    divTarjCam.appendChild(divRow);
+
+    return divTarjCam;
+}
+
+function enviarCamion(){
+    //crear el objeto XMLHttpRequest para acceder al servidor
+    let jsonhttp = new XMLHttpRequest();
+
+    //datos para enviar al servidor
+    let marca = document.getElementById("marca").value;
+    let modelo = document.getElementById("modelo").value;
+    let precio = document.getElementById("precio").value;
+    let desc = document.getElementById("desc").value;
+
+    //*********************************
+    // codigo para tratar la respuesta
+    jsonhttp.onreadystatechange  = function(){
+        //evaluar la respuesta del servidor
+        if(this.readyState == 4 && this.status == 200){
+            let resultado = JSON.parse(this.responseText);
+            if(resultado){
+                c=[marca,modelo,desc,precio,"camionDeffault.png"]
+                listaCamiones.insertBefore(crearCamion(c), listaCamiones.firstChild);                
+            }
+        }
+    }
+
+    //construir la petición al servidor
+	jsonhttp.open("POST","http://www.servidor.es/catalogoCamiones/guardarCamion.py",true);
+    jsonhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	//ejecutar la petición al servidor
+	jsonhttp.send("marca="+marca+"&modelo="+modelo+"&precio="+precio+"&desc="+desc);
 }

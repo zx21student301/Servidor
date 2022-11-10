@@ -53,3 +53,29 @@ tarjetaCamion="""
   </div>
 </div>
 """
+
+formulario="""
+<form>
+ <div class="mb-3">
+  <label for="modelo" class="form-label">Modelo</label>
+  <input type="text" class="form-label" id="modelo" aria-describedby="modeloAyuda" name="modelo">
+  <div id="modeloAyuda" class="from-text">Escribe el modelo del cami&oacute;n</div>
+ </div>
+ <div class="mb-3">
+  <label for="marca" class="form-label">Marca</label>
+  <input type="text" class="form-label" id="marca" aria-describedby="marcaAyuda" name="marca">
+  <div id="marcaAyuda" class="from-text">Escribe el marca del cami&oacute;n</div>
+ </div>
+  <div class="mb-3">
+  <label for="precio" class="form-label">Precio</label>
+  <input type="text" class="form-label" id="precio" aria-describedby="precioAyuda" name="precio">
+  <div id="precioAyuda" class="from-text">Escribe el precio del cami&oacute;n</div>
+ </div>
+  <div class="mb-3">
+  <label for="desc" class="form-label">Descripcion</label>
+  <input type="text" class="form-label" id="desc" aria-describedby="descAyuda" name="desc">
+  <div id="descAyuda" class="from-text">Escribe el desc del cami&oacute;n</div>
+ </div>
+ <button type="button" class="btn btn-primary" onclick="enviarCamion()">Enviar cami&oacute;n</button>
+</form>
+"""
