@@ -10,9 +10,10 @@ CREATE TABLE camiones (
     descripcion varchar(255),
     precio float(10),
     imagen varchar(255),
+    fechaCreacion DATETIME,
     PRIMARY KEY (id)                 
 )
 
-INSERT INTO `camiones`(`marca`, `modelo`, `descripcion`, `precio`, `imagen`) VALUES ('Volvo','FH 500','Seminuevo','58500','volvoFH500.PNG');
+INSERT INTO `camiones`(`marca`, `modelo`, `descripcion`, `precio`, `imagen`, `fechaCreacion`) VALUES ('Volvo','FH 500','Seminuevo','58500','volvoFH500.PNG',now());
 
-INSERT INTO `camiones`(`marca`, `modelo`, `descripcion`, `precio`, `imagen`) VALUES ('Scania','R450 NTG','Siempre en garaje','78500','scaniaR450NTG.PNG');
+INSERT INTO `camiones`(`marca`, `modelo`, `descripcion`, `precio`, `imagen`, `fechaCreacion`) VALUES ('Scania','R450 NTG','Siempre en garaje','78500','scaniaR450NTG.PNG',now());
