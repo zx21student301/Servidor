@@ -18,4 +18,4 @@ INSERT INTO `camiones`(`marca`, `modelo`, `descripcion`, `precio`, `imagen`, `fe
 
 INSERT INTO `camiones`(`marca`, `modelo`, `descripcion`, `precio`, `imagen`, `fechaCreacion`) VALUES ('Scania','R450 NTG','Siempre en garaje','78500','scaniaR450NTG.PNG',now());
 
-INSERT INTO `camiones`(`marca`, `modelo`, `descripcion`, `precio`, `imagen`, `fechaCreacion`) VALUES ('Renault','T 520 ADR','Nuevo','44.500','renaultT520ADR.PNG',now());
+INSERT INTO `camiones`(`marca`, `modelo`, `descripcion`, `precio`, `imagen`, `fechaCreacion`) VALUES ('Renault','T 520 ADR','Nuevo','44500','renaultT520ADR.PNG',now());

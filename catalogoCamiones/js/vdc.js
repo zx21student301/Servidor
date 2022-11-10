@@ -18,14 +18,10 @@ function cargarServidorCamiones(){
 		//evaluar la respuesta del servidor
         if(this.readyState == 4 && this.status == 200){
             let listaC = JSON.parse(this.responseText);   
-            
-            console.log(listaC)
-
-            let camion;
 
             for (c of listaC){
-                
-                camion = '\
+
+                let camion = '\
                 <div class="card m-3">\
                     <div class="row g-0">\
                     <div class="col-md-5">\
@@ -44,8 +40,6 @@ function cargarServidorCamiones(){
 
                 listaCamiones.innerHTML += camion;
             }
-		}else{
-
 		}
 	}
 
