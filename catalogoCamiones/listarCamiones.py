@@ -2,22 +2,20 @@
 
 import mysql.connector
 import json
-
+ 
 #conectar a la base de datos
-mibd = mysql.connector.connect(
-    host='localhost',
-    user='ventaCamiones',
-    password='ventaCamiones',
-    database='ventaCamiones'
+mydb = mysql.connector.connect(
+  host='localhost',
+  user='ventaCamiones',
+  password='ventaCamiones',
+  database='ventaCamiones'
 )
-
-mycursor = mibd.cursor()
-
+ 
+mycursor = mydb.cursor()
+ 
 #consultar en la base de datos la lista de todos los camiones
-sql="SELECT marca, modelo, precio, imagen, fechaCreacion FROM camiones ORDER BY fechaCreacion"
+sql="SELECT marca,modelo,descripcion,precio,imagen, DATE_FORMAT(fechaCreacion, '%Y-%m-%d %T') FROM camiones ORDER BY fechaCreacion DESC"
 mycursor.execute(sql)
 lc = mycursor.fetchall()
-
-print("Conten-Type: text/html\n")
-
+print("Content-Type: text/plain\n")
 print(json.dumps(lc))

@@ -17,3 +17,5 @@ CREATE TABLE camiones (
 INSERT INTO `camiones`(`marca`, `modelo`, `descripcion`, `precio`, `imagen`, `fechaCreacion`) VALUES ('Volvo','FH 500','Seminuevo','58500','volvoFH500.PNG',now());
 
 INSERT INTO `camiones`(`marca`, `modelo`, `descripcion`, `precio`, `imagen`, `fechaCreacion`) VALUES ('Scania','R450 NTG','Siempre en garaje','78500','scaniaR450NTG.PNG',now());
+
+INSERT INTO `camiones`(`marca`, `modelo`, `descripcion`, `precio`, `imagen`, `fechaCreacion`) VALUES ('Renault','T 520 ADR','Nuevo','44.500','renaultT520ADR.PNG',now());
