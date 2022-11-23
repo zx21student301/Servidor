@@ -103,5 +103,7 @@ for i in range (0,6):
 print("************************************")
 print("EJERCICIO 6")
 print("************************************")
-
-print()
+##Suma minutos y segundos al datetime que le pases
+dm = datetime.datetime.now() + datetime.timedelta(minutes=2,seconds=5)
+print(datetime.datetime.now())
+print(dm)
