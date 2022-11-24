@@ -5,6 +5,7 @@ import cgitb
 from http import cookies
 import mysql.connector
 from configuracion import configBD,configPath
+from registroTiempos import regT
 
 #conectar a la base de datos
 mydb = mysql.connector.connect(
@@ -66,7 +67,11 @@ if estasDentro:
     sql = 'INSERT INTO comentarios (titulo, autor, comentario,usuarioId, imagen ) VALUES (%s,%s,%s,%s,%s)'
     val = (ttl, usr, cmntr, id, fileitem.filename)
     mycursor.execute(sql, val)
-    mydb.commit()    
+    mydb.commit()
+
+    param = "titulo:"+ttl+", autor:"+usr+", comentario:"+cmntr+", imagen:"+fileitem.filename
+
+    regT(id,"insertarComentario",param)    
 
     print("Content-Type: text/html\n")
     print(codigoHTML.cabeceraHTML.format("Comentario creado", '<meta http-equiv="Refresh" content="2; URL=listaComentarios.py"/>',

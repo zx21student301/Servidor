@@ -33,19 +33,19 @@ CREATE TABLE `comentarios` (
     FOREIGN KEY (`usuarioId`) REFERENCES `usuarios`(`id`)
 );
 
-CREATE TABLE regOperaciones (
-    id INT AUTO_INCREMENT NOT NULL,
-    id_usuario INT NOT NULL,
-    operacion varchar(250) NOT NULL,
-    parametros varchar(600),
-    tmpOperacion datetime NOT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+CREATE TABLE regOperaciones ( id INT AUTO_INCREMENT NOT NULL, 
+    id_usuario INT, 
+    operacion varchar(250) NOT NULL, 
+    parametros varchar(600), 
+    tmpOperacion datetime NOT NULL, 
+    PRIMARY KEY (id), 
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id) 
 );
 
 INSERT INTO roles(descripcion) VALUE ("admin");
 INSERT INTO roles(descripcion) VALUE ("normal");
 
-INSERT INTO USUARIOS(usuario, passwd, mail,rolId,tmpRegistro) VALUES ('admin','c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec','pepe@correo.net',1,now())
+INSERT INTO USUARIOS(usuario, passwd, mail, rolId, tmpRegistro) VALUES ('admin','c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec','pepe@correo.net',1,now())
 
 
 

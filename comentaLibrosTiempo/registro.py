@@ -5,6 +5,8 @@ import codigoHTML
 import hashlib
 import mysql.connector
 from configuracion import configBD
+import datetime
+from registroTiempos import regT
 
 #conectar a la base de datos
 mydb = mysql.connector.connect(
@@ -24,6 +26,12 @@ if "usuario" in args and "email" in args and "passwd" in args:
     h=hashlib.sha512(str.encode(args["passwd"][0]))
     passwd=h.hexdigest()
 
+    #variable que guarda la fecha en el momento de crear el usuario
+    fechaNow = datetime.datetime.now()
+
+    #variable que guarda solo los datos que nos interesan de la fecha en el momento de creacion
+    fecha = fechaNow.strftime("%Y")+"-"+fechaNow.strftime("%m")+"-"+fechaNow.strftime("%d")+" "+fechaNow.strftime("%H")+":"+fechaNow.strftime("%M")+":"+fechaNow.strftime("%S")
+
     #crear un cursor a la base de datos
     mycursor = mydb.cursor()
 
@@ -39,9 +47,9 @@ if "usuario" in args and "email" in args and "passwd" in args:
 
     if myresult[0]==0:
         #inserta en base de datos
-        sql = 'INSERT INTO usuarios (usuario, passwd, mail,rolid ) VALUES (%s, %s, %s, 2)'
+        sql = 'INSERT INTO usuarios (usuario, passwd, mail, tmpRegistro, rolid) VALUES (%s, %s, %s, %s, 2)'
 
-        val = (user, passwd, mail)
+        val = (user, passwd, mail,fecha)
         mycursor.execute(sql, val)
 
         mydb.commit()

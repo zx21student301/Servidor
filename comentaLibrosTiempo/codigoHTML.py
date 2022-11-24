@@ -90,7 +90,7 @@ finalHTML= """
 """
 
 inicioTabla="""
-                 <table class="m-3 table table-striped"><tr><th></th><th>Usuario</th><th>Correo</th></tr>
+                 <table class="m-3 table table-striped"><tr><th><th></th></th><th>Usuario</th><th>Correo</th></tr>
 """
 tablausuarios="""
                     <tr>
@@ -99,6 +99,13 @@ tablausuarios="""
                       <input type="hidden" name="id" value="{}">
                       <input type="hidden" name="usuario" value="{}">
                       <button class="btn btn-primary" type="submit">Borrar</button>
+                      </form>
+                    </td>
+                    <td>
+                      <form action="historial.py" metho="get">
+                      <input type="hidden" name="id" value="{}">
+                      <input type="hidden" name="usuario" value="{}">
+                      <button class="btn btn-primary" type="submit">Historial</button>
                       </form>
                     </td>
                     <td>{}</td>

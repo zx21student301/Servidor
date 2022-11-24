@@ -50,7 +50,7 @@ if estasDentro:
     print(codigoHTML.inicioTabla)
 
     for x in myresult:
-        print(codigoHTML.tablausuarios.format(x[0],x[1],x[1],x[2]))
+        print(codigoHTML.tablausuarios.format(x[0],x[1],x[0],x[1],x[1],x[2]))
 
     print(codigoHTML.finalTabla)
 

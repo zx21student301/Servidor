@@ -7,6 +7,7 @@ import datetime
 import hashlib
 import mysql.connector
 from configuracion import configBD
+from registroTiempos import regT
 
 #conectar a la base de datos
 mydb = mysql.connector.connect(
@@ -32,6 +33,8 @@ if "usuario" in args and "passwd" in args:
     sql = 'SELECT id,passwd,rolId FROM usuarios where usuario like \"'+usu+'\"'
     mycursor.execute(sql)
     myresult = mycursor.fetchone()
+
+    regT(myresult[0],"login.py","")
 
     if myresult[1]==passwd:
         existe = True

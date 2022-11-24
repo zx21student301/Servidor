@@ -4,6 +4,7 @@ import cgi,codigoHTML,os
 from http import cookies
 import mysql.connector
 from configuracion import configBD
+from registroTiempos import regT
 
 #conectar a la base de datos
 mydb = mysql.connector.connect(
@@ -44,7 +45,11 @@ if estasDentro:
     sql = 'SELECT id FROM usuarios where coki like \"'+todasCokis['SID']+'\"'
     mycursor.execute(sql)
     myresult = mycursor.fetchone()
-    id=myresult[0]    
+    id=myresult[0]
+
+    param = "Id comentario borrado:"+idComent
+
+    regT(id,"borrarComent.py",param)    
 
     print("Content-Type: text/html\n")
 

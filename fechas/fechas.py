@@ -12,7 +12,7 @@ y = datetime.datetime(2003, 8, 23)
 print("Content-type: text/plain\n")
 
 print(type(x))
-print(x)
+print(x.strftime("%Y")+"-"+x.strftime("%m")+"-"+x.strftime("%d")+" "+x.strftime("%H")+":"+x.strftime("%M")+":"+x.strftime("%S"))
 print(y)
 
 ##ver el año

@@ -4,7 +4,6 @@ import cgi,codigoHTML,os
 from http import cookies
 import mysql.connector
 from configuracion import configBD
-from registroTiempos import regT
 
 #conectar a la base de datos
 mydb = mysql.connector.connect(
@@ -31,26 +30,20 @@ if 'SID' in todasCokis:
     #crear un cursor a la base de datos
     mycursor = mydb.cursor() 
 
-    sql = 'SELECT count(*),id FROM usuarios where coki like \"'+todasCokis['SID']+'\"'
+    sql = 'SELECT count(*) FROM usuarios where rolId = 1 and coki like \"'+todasCokis['SID']+'\"'
     mycursor.execute(sql)
     myresult = mycursor.fetchone()
-
-    id = myresult[1]
-
-    regT(id,"creaComentario.py","")
 
     if(myresult[0]==1):
         estasDentro=True
             
 if estasDentro:
+
+    form = cgi.FieldStorage()
+    id = form['id'].value
+    usu = form['usuario'].value
+
     print("Content-Type: text/html\n")
-    print(codigoHTML.cabeceraHTML.format("Crear un comentario","","Crear un comentario",
-                                         '<form action="listaComentarios.py" method="get"><button type="submit" class="btn btn-primary">volver a la lista de comentarios</button></form>',
+    print(codigoHTML.cabeceraHTML.format("Historial del usuario","","Historial del usuario",
+                                         '<form action="administrador.py" method="get"><button type="submit" class="btn btn-primary">volver a la lista de usuarios</button></form>',
                                          '<form action="logout.py" method="get"><button type="submit" class="btn btn-primary">Log out</button></form>',"",""))
-    print(codigoHTML.formulario)
-    print(codigoHTML.finalHTML)
-else:
-    print("Content-Type: text/html\n")
-    print(codigoHTML.cabeceraHTML.format("Error", '<meta http-equiv="Refresh" content="2; URL=error.html"/>',
-              "No hay cookie","",""))
-    print(codigoHTML.finalHTML)
