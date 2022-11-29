@@ -6,7 +6,6 @@ import hashlib
 import mysql.connector
 from configuracion import configBD
 import datetime
-from registroTiempos import regT
 
 #conectar a la base de datos
 mydb = mysql.connector.connect(

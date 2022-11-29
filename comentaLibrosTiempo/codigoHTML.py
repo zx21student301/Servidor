@@ -124,3 +124,28 @@ Usuario {} borrado
 usuarioNoBorrado="""
   No se borro el usuario {}
 """
+
+inicioTablaH="""
+                <table class="m-3 table table-striped"><tr><th>Id</th><th>Operacion</th><th>Parametros</th><th>Fecha</th></tr>
+"""
+
+tablaHistorial="""
+                <tr>
+                <td>
+                  <p>{}</p>
+                </td>
+                <td>
+                  <p>{}</p>
+                </td>
+                <td>
+                  <p>{}</p>
+                </td>
+                <td>
+                  <p>{}</p>
+                </td>
+                </tr>
+"""
+
+finalTablaH="""
+                </table>
+"""

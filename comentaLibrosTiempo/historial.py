@@ -47,3 +47,15 @@ if estasDentro:
     print(codigoHTML.cabeceraHTML.format("Historial del usuario","","Historial del usuario",
                                          '<form action="administrador.py" method="get"><button type="submit" class="btn btn-primary">volver a la lista de usuarios</button></form>',
                                          '<form action="logout.py" method="get"><button type="submit" class="btn btn-primary">Log out</button></form>',"",""))
+
+    print(codigoHTML.inicioTablaH)
+
+    sql = 'SELECT id_usuario,operacion,parametros,tmpOperacion FROM regoperaciones WHERE id_usuario IN ('+id+')'
+    mycursor.execute(sql)
+    myresult = mycursor.fetchall()
+
+    for i in range (len(myresult)):
+        print(codigoHTML.tablaHistorial.format(myresult[i][0],myresult[i][1],myresult[i][2],myresult[i][3]))
+
+    print(codigoHTML.finalTablaH)
+    
