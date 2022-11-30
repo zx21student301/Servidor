@@ -50,7 +50,7 @@ if estasDentro:
 
     print(codigoHTML.inicioTablaH)
 
-    sql = 'SELECT id_usuario,operacion,parametros,tmpOperacion FROM regoperaciones WHERE id_usuario IN ('+id+')'
+    sql = 'SELECT id_usuario,operacion,parametros,tmpOperacion FROM regoperaciones WHERE id_usuario IN ('+id+') ORDER BY tmpOperacion DESC'
     mycursor.execute(sql)
     myresult = mycursor.fetchall()
 
